@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <Fragment>
       <NavBar />
-      <SearchBar />
     </Fragment>
   );
 };
