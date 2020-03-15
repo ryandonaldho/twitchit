@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
-import { searchChannels } from "../../actions/searchActions";
+import { searchChannels } from "../../actions/channelActions";
 
 const SearchBar = ({ searchChannels }) => {
   const text = useRef("");

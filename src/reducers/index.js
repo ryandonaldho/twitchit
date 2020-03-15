@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import searchReducer from "./searchReducer";
+import channelReducer from "./channelReducer";
 export default combineReducers({
-  search: searchReducer
+  channel: channelReducer
 });
