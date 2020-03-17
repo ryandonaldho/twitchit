@@ -1,4 +1,4 @@
-import { SEARCH_CHANNELS } from "./types";
+import { SEARCH_CHANNELS, GET_SEARCH_CHANNEL_RESULTS } from "./types";
 import axios from "axios";
 
 const config = {
@@ -9,13 +9,11 @@ const config = {
 };
 
 export const searchChannels = channel => async dispatch => {
-  console.log(channel);
   try {
     const res = await axios.get(
       `https://api.twitch.tv/kraken/search/channels?query=${channel}`,
       config
     );
-    console.log(res.data.channels);
     dispatch({
       type: SEARCH_CHANNELS,
       payload: res.data.channels
@@ -23,4 +21,8 @@ export const searchChannels = channel => async dispatch => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const getSearchChannelResults = () => async dispatch => {
+  //
 };
