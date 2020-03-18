@@ -9,7 +9,7 @@ const ChannelSearchResults = ({ channels }) => {
     return (
       <List>
         {channels.map(channel => (
-          <ChannelSearchItem key={channel.display_name} />
+          <ChannelSearchItem key={channel.display_name} channel={channel} />
         ))}
       </List>
     );

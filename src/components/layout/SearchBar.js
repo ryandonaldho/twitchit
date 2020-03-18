@@ -54,7 +54,6 @@ const SearchBar = ({ searchChannels }) => {
 
   const text = useRef("");
   const onChange = e => {
-    //console.log(text.current.value);
     searchChannels(text.current.value);
   };
 
