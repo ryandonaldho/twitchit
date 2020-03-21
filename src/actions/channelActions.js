@@ -1,9 +1,14 @@
-import { SEARCH_CHANNELS, GET_SEARCH_CHANNEL_RESULTS } from "./types";
+import { SEARCH_CHANNELS } from "./types";
 import axios from "axios";
 
+let twitchClientId;
+
+twitchClientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
+
+//TODO Move to global headers or import from config file?
 const config = {
   headers: {
-    "Client-ID": "94i0vcuchrod07bvy9ofuz6oiwg0wy",
+    "Client-ID": twitchClientId,
     accept: "application/vnd.twitchtv.v5+json"
   }
 };
@@ -21,8 +26,4 @@ export const searchChannels = channel => async dispatch => {
   } catch (err) {
     console.log(err);
   }
-};
-
-export const getSearchChannelResults = () => async dispatch => {
-  //
 };

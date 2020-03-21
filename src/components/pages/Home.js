@@ -6,7 +6,6 @@ import ChannelSearchResults from "../channel/ChannelSearchResults";
 const Home = () => {
   return (
     <Fragment>
-      <NavBar />
       <ChannelSearchResults />
     </Fragment>
   );

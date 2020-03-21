@@ -1,10 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
+import Button from "@material-ui/core/Button";
 
 import SearchBar from "./SearchBar";
 
@@ -61,9 +64,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SearchAppBar() {
+const NavBar = ({ isAuthenticated }) => {
   const classes = useStyles();
-
+  console.log(isAuthenticated);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -80,8 +83,23 @@ export default function SearchAppBar() {
             Twitch It
           </Typography>
           <SearchBar />
+          {isAuthenticated === false && (
+            <Button
+              variant="contained"
+              color="primary"
+              href={process.env.REACT_APP_TWITCH_OAUTH_URL}
+            >
+              Login To Twitch
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {})(NavBar);

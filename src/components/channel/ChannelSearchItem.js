@@ -7,7 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 
 const ChannelSearchItem = ({ channel }) => {
   const onClick = e => {
-    console.log("clicked");
+    console.log(channel.name);
   };
 
   return (

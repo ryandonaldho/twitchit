@@ -14,11 +14,7 @@ const ChannelSearchResults = ({ channels }) => {
       </List>
     );
   }
-  return (
-    <div>
-      <h1>Empty</h1>
-    </div>
-  );
+  return null;
 };
 
 const mapStateToProps = state => ({
