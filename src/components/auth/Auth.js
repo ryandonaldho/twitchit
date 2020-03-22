@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import { get_access_token } from "../../actions/authActions";
@@ -8,12 +9,8 @@ const Auth = props => {
   useEffect(() => {
     const values = queryString.parse(props.location.search);
     props.get_access_token(values.code);
-    // console.log(values);
-    // if (values.code) {
-    //   localStorage.setItem("authorization_code", values.code);
-    // }
   });
-  return <div>Test</div>;
+  return <Redirect to="/" />;
 };
 
 export default connect(null, { get_access_token })(Auth);

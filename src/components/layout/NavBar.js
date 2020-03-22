@@ -82,8 +82,9 @@ const NavBar = ({ isAuthenticated }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Twitch It
           </Typography>
-          <SearchBar />
-          {isAuthenticated === false && (
+          {isAuthenticated ? (
+            <SearchBar />
+          ) : (
             <Button
               variant="contained"
               color="primary"

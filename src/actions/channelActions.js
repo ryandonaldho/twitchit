@@ -27,3 +27,22 @@ export const searchChannels = channel => async dispatch => {
     console.log(err);
   }
 };
+
+export const getChannelInfo = channel => async dispatch => {
+  try {
+    // console.log(channel);
+    // console.log(localStorage.getItem("access_token"));
+    const access_token = localStorage.getItem("access_token");
+    const res = await axios.get(
+      `https://api.twitch.tv/helix/users?login=${channel}`,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    );
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};

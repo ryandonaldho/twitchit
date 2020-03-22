@@ -1,13 +1,15 @@
 import React, { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 
-const ChannelSearchItem = ({ channel }) => {
+const ChannelSearchItem = ({ channel, history }) => {
   const onClick = e => {
     console.log(channel.name);
+    history.push(`/channel/${channel.name}`);
   };
 
   return (
@@ -26,4 +28,4 @@ const ChannelSearchItem = ({ channel }) => {
   );
 };
 
-export default ChannelSearchItem;
+export default withRouter(ChannelSearchItem);

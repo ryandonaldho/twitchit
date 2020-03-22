@@ -1,14 +1,9 @@
 import React, { Fragment } from "react";
-import SearchBar from "../layout/SearchBar";
-import NavBar from "../layout/NavBar";
+import { connect } from "react-redux";
 import ChannelSearchResults from "../channel/ChannelSearchResults";
 
-const Home = () => {
-  return (
-    <Fragment>
-      <ChannelSearchResults />
-    </Fragment>
-  );
+const Home = ({ channels }) => {
+  return <Fragment>{channels !== null && <ChannelSearchResults />}</Fragment>;
 };
 
-export default Home;
+export default connect(null, {})(Home);
