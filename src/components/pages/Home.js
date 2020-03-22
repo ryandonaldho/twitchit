@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ChannelSearchResults from "../channel/ChannelSearchResults";
 
 const Home = ({ channels }) => {
-  return <Fragment>{channels !== null && <ChannelSearchResults />}</Fragment>;
+  return <div>Hello</div>;
 };
 
 export default connect(null, {})(Home);

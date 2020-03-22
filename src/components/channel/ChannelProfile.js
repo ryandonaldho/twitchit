@@ -11,6 +11,7 @@ const ChannelProfile = props => {
   return (
     <div>
       Profile
+      {channel}
       <TwitchPlayer channel={channel} />
     </div>
   );
