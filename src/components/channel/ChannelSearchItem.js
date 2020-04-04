@@ -6,10 +6,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 
-const ChannelSearchItem = ({ channel, history }) => {
+import { connect } from "react-redux";
+import { setCurrentChannelId } from "../../actions/channelActions";
+
+const ChannelSearchItem = ({ channel, history, setCurrentChannelId }) => {
   const onClick = e => {
-    console.log(channel.name);
+    //console.log(channel.name);
     history.push(`/channel/${channel.name}`);
+    setCurrentChannelId(channel._id);
   };
 
   return (
@@ -28,4 +32,6 @@ const ChannelSearchItem = ({ channel, history }) => {
   );
 };
 
-export default withRouter(ChannelSearchItem);
+export default connect(null, { setCurrentChannelId })(
+  withRouter(ChannelSearchItem)
+);

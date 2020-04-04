@@ -1,9 +1,13 @@
 import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import ChannelSearchResults from "../channel/ChannelSearchResults";
+import TopStreams from "../stream/TopStreams";
 
-const Home = ({ channels }) => {
-  return <div>Hello</div>;
+const Home = ({}) => {
+  return (
+    <div>
+      Hello
+      <TopStreams />
+    </div>
+  );
 };
 
-export default connect(null, {})(Home);
+export default Home;
