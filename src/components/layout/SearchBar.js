@@ -5,8 +5,9 @@ import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
-import ChannelSearchResults from "../channel/ChannelSearchResults";
+import ChannelSearchItem from "../channel/ChannelSearchItem";
 import { searchChannels } from "../../actions/channelActions";
+import { List } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,15 +84,17 @@ const SearchBar = ({ searchChannels, channels }) => {
         <SearchIcon />
       </div>
       <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        options={channels.map(channel => channel.name)}
-        renderOption={() => <ChannelSearchResults />}
+        options={channels}
+        getOptionLabel={option => option.name}
+        renderOption={options => (
+          <List>
+            <ChannelSearchItem key={options.display_name} channel={options} />
+          </List>
+        )}
         renderInput={params => (
           <TextField
             {...params}
-            classes={{}}
-            label="freeSolo"
+            label="Search Channel"
             margin="normal"
             variant="outlined"
             onChange={onChange}
