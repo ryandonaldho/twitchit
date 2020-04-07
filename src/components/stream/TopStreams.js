@@ -3,14 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useEffect } from "react";
-
-const style = {
-  width: "100%",
-  height: "400px",
-  border: "1px solid green",
-  margin: 6,
-  padding: 8
-};
+import StreamCard from "./StreamCard";
 
 let twitchClientId;
 
@@ -46,7 +39,7 @@ const TopStreams = () => {
         config
       );
     }
-    setThumbnailSize(res.data.data, "400", "300");
+    setThumbnailSize(res.data.data, "440", "248");
     return res;
   };
 
@@ -83,12 +76,9 @@ const TopStreams = () => {
           alignItems="center"
           spacing={3}
         >
-          {items.map((i, index) => (
-            <Grid item md={3} key={index}>
-              <div style={style}>
-                {i.user_name}
-                <img src={i.thumbnail_url}></img>
-              </div>
+          {items.map((stream, index) => (
+            <Grid item key={index}>
+              <StreamCard stream={stream} />
             </Grid>
           ))}
         </Grid>
