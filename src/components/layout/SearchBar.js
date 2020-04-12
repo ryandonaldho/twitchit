@@ -7,14 +7,14 @@ import ChannelSearchItem from "../channel/ChannelSearchItem";
 import { searchChannels } from "../../actions/channelActions";
 import { List } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   search: {
     width: "25%",
     borderRadius: theme.shape.borderRadius,
-    marginLeft: 0
+    marginLeft: 0,
     // width: "100%",
     // [theme.breakpoints.up("sm")]: {
     //   marginLeft: theme.spacing(1),
@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     // }
   },
   inputRoot: {
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
 const SearchBar = ({ searchChannels, channels }) => {
@@ -34,20 +34,20 @@ const SearchBar = ({ searchChannels, channels }) => {
   }
 
   const text = useRef("");
-  const onChange = e => {
+  const onChange = (e) => {
     searchChannels(text.current.value);
   };
   return (
     <div className={classes.search}>
       <Autocomplete
         options={channels}
-        getOptionLabel={option => option.name}
-        renderOption={options => (
+        getOptionLabel={(option) => option.name}
+        renderOption={(options) => (
           <List>
             <ChannelSearchItem key={options.display_name} channel={options} />
           </List>
         )}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField
             {...params}
             label="Search Channel"
@@ -62,8 +62,8 @@ const SearchBar = ({ searchChannels, channels }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  channels: state.channel.channels
+const mapStateToProps = (state) => ({
+  channels: state.channel.channels,
 });
 
 export default connect(mapStateToProps, { searchChannels })(SearchBar);

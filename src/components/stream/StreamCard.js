@@ -2,21 +2,19 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import numeral from "numeral";
 
 const useStyles = makeStyles({
   root: {
     width: 440,
-    height: 400,
-    position: "relative"
+    height: 380,
+    position: "relative",
   },
   media: {
-    height: 248
+    height: 248,
   },
   live_overlay: {
     position: "absolute",
@@ -24,7 +22,7 @@ const useStyles = makeStyles({
     left: "15px",
     color: "white",
     backgroundColor: "red",
-    opacity: "0.8"
+    opacity: "0.8",
   },
   viewer_overlay: {
     position: "absolute",
@@ -32,17 +30,16 @@ const useStyles = makeStyles({
     left: "15px",
     color: "white",
     backgroundColor: "black",
-    opacity: "0.7"
-  }
+    opacity: "0.7",
+  },
 });
 
-// TODO: add game name & tags?
-//       onclick to channel page
+// TODO: onclick to channel page
 const StreamCard = ({
-  stream: { user_name, title, thumbnail_url, viewer_count, game_id }
+  stream: { user_name, title, thumbnail_url, viewer_count, game_id },
+  game_name,
 }) => {
   const classes = useStyles();
-  console.log(user_name);
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -51,10 +48,10 @@ const StreamCard = ({
           image={thumbnail_url}
           title="Contemplative Reptile"
         />
-        <Typography className={classes.live_overlay} variant="body">
+        <Typography className={classes.live_overlay} variant="caption">
           Live
         </Typography>
-        <Typography className={classes.viewer_overlay} variant="body">
+        <Typography className={classes.viewer_overlay} variant="caption">
           {numeral(viewer_count).format("0.0a")} viewers
         </Typography>
         <CardContent>
@@ -68,6 +65,9 @@ const StreamCard = ({
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {user_name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {game_name}
           </Typography>
         </CardContent>
       </CardActionArea>

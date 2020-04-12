@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   getChannelInfo,
   getChannelFollowing,
-  getTotalFollowers
+  getTotalFollowers,
 } from "../../actions/channelActions";
 import TwitchPlayer from "./TwitchPlayer";
 import ChannelInfo from "./ChannelInfo";
@@ -11,14 +11,16 @@ import ChannelInfo from "./ChannelInfo";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
+// TODO Create Split Pane for chat/video like twitch
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    marginTop: "20px"
-  }
+    marginTop: "20px",
+  },
 }));
 
-const ChannelProfile = props => {
+const ChannelProfile = (props) => {
   const classes = useStyles();
 
   const channel = props.match.params.channelname;
@@ -70,13 +72,13 @@ const ChannelProfile = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   channelId: state.channel.currentChannelId,
-  channelInfo: state.channel.currentChannelInfo
+  channelInfo: state.channel.currentChannelInfo,
 });
 
 export default connect(mapStateToProps, {
   getChannelInfo,
   getChannelFollowing,
-  getTotalFollowers
+  getTotalFollowers,
 })(ChannelProfile);

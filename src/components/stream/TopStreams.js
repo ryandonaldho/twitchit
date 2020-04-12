@@ -4,57 +4,84 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useEffect } from "react";
 import StreamCard from "./StreamCard";
-
-let twitchClientId;
-
-twitchClientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
-const config = {
-  headers: {
-    "Client-ID": twitchClientId,
-    accept: "application/vnd.twitchtv.v5+json"
-  }
-};
+import { twitch_api_config } from "../../utils";
 
 const TopStreams = () => {
   const [items, setItems] = useState([]);
   const [cursor, setCursor] = useState("");
+  const [gamesMap, setGamesMap] = useState(new Map());
 
   const setThumbnailSize = (streams, width, height) => {
-    streams.forEach(stream => {
+    streams.forEach((stream) => {
       stream.thumbnail_url = stream.thumbnail_url.replace("{width}", width);
       stream.thumbnail_url = stream.thumbnail_url.replace("{height}", height);
     });
+  };
+
+  // sets the lists of game ids for the current streams given
+  const getGameIdList = (streams) => {
+    let game_ids = new Set();
+    streams.forEach((stream) => {
+      game_ids.add(stream.game_id);
+    });
+    return Array.from(game_ids);
+  };
+
+  const getGames = async (queryString) => {
+    let res = await axios.get(
+      `https://api.twitch.tv/helix/games?id=${queryString}`,
+      twitch_api_config
+    );
+    //console.log(res);
+    return res;
+  };
+
+  // updates to the state a map that associates game id to game name
+  const createGameMap = async (streams) => {
+    let list = getGameIdList(streams);
+    // create queryString
+    let queryString = list.join("&id=");
+    let res = await getGames(queryString);
+    // creates the map and then sets the state
+    // adds to current game Map so that it's not overwritten
+    let newGameMap = new Map(gamesMap);
+    let games = res.data.data;
+    games.forEach((game) => {
+      newGameMap.set(game.id, game.name);
+    });
+    //console.log(newGameMap);
+    setGamesMap(newGameMap);
   };
 
   const getLiveStreams = async (nextCursor = "") => {
     let res;
     if (nextCursor === "") {
       res = await axios.get(
-        `https://api.twitch.tv/helix/streams?first=20`,
-        config
+        `https://api.twitch.tv/helix/streams?first=30`,
+        twitch_api_config
       );
     } else {
       res = await axios.get(
         `https://api.twitch.tv/helix/streams?first=20&after=${nextCursor}`,
-        config
+        twitch_api_config
       );
     }
     setThumbnailSize(res.data.data, "440", "248");
+    createGameMap(res.data.data);
     return res;
   };
-
   useEffect(() => {
-    getLiveStreams().then(res => {
-      console.log(res.data.data);
+    getLiveStreams().then((res) => {
+      //console.log(res.data.data);
       setItems(res.data.data);
       setCursor(res.data.pagination.cursor);
     });
   }, []);
 
   const fetchMoreData = () => {
-    // add 20 more records in 1.5 secs
+    // add 20 more records in 1 second
     setTimeout(() => {
-      getLiveStreams(cursor).then(res => {
+      getLiveStreams(cursor).then((res) => {
         setItems(items.concat(res.data.data));
         setCursor(res.data.pagination.cursor);
       });
@@ -78,7 +105,10 @@ const TopStreams = () => {
         >
           {items.map((stream, index) => (
             <Grid item key={index}>
-              <StreamCard stream={stream} />
+              <StreamCard
+                stream={stream}
+                game_name={gamesMap.get(stream.game_id)}
+              />
             </Grid>
           ))}
         </Grid>
