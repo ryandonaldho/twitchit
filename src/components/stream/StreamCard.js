@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import numeral from "numeral";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -36,13 +37,21 @@ const useStyles = makeStyles({
 
 // TODO: onclick to channel page
 const StreamCard = ({
-  stream: { user_name, title, thumbnail_url, viewer_count, game_id },
+  stream: { user_name, title, thumbnail_url, viewer_count, user_id },
   game_name,
+  history,
 }) => {
   const classes = useStyles();
+  const onClick = (e) => {
+    console.log("clicked");
+    history.push(`/channel/${user_name}`);
+    // TODO need to remove needing channel id in profile
+    //setCurrentChannelId(user_id);
+  };
+
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={onClick}>
         <CardMedia
           className={classes.media}
           image={thumbnail_url}
@@ -75,4 +84,4 @@ const StreamCard = ({
   );
 };
 
-export default StreamCard;
+export default withRouter(StreamCard);

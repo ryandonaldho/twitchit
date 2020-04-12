@@ -2,3 +2,7 @@ iframe {
   display: block;
   margin: auto;
 }
+
+body {
+  background-color: #f7f7f8;
+}

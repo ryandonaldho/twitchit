@@ -7,24 +7,7 @@ import ChannelSearchItem from "../channel/ChannelSearchItem";
 import { searchChannels } from "../../actions/channelActions";
 import { List } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  search: {
-    width: "25%",
-    borderRadius: theme.shape.borderRadius,
-    marginLeft: 0,
-    // width: "100%",
-    // [theme.breakpoints.up("sm")]: {
-    //   marginLeft: theme.spacing(1),
-    //   width: "auto"
-    // }
-  },
-  inputRoot: {
-    color: "white",
-  },
-}));
+const useStyles = makeStyles((theme) => ({}));
 
 const SearchBar = ({ searchChannels, channels }) => {
   const classes = useStyles();
