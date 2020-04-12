@@ -67,11 +67,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-// TODO Use the this url to as button that directs to authorize and then get access token from the url
-export const get_oauth_token = () => async dispatch => {
-const res = await axios.post(
-`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=94i0vcuchrod07bvy9ofuz6oiwg0wy&redirect_uri=http://localhost:3000&scope=viewing_activity_read&force_verify=true`,
-config2
-);
-console.log(res);
-};
+Create a `.env.local` file
+
+```
+REACT_APP_TWITCH_CLIENT_ID='<ID>'
+REACT_APP_TWITCH_CLIENT_SECRET = "<SECRET>"
+REACT_APP_TWITCH_REDIRECT_URI = "http://localhost:3000/auth"
+REACT_APP_TWITCH_OAUTH_URL="<OAUTH URL>"
+```
