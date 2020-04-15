@@ -7,7 +7,11 @@ import ChannelSearchItem from "../channel/ChannelSearchItem";
 import { searchChannels } from "../../actions/channelActions";
 import { List } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  search: {
+    backgroundColor: "#f7f7f8",
+  },
+}));
 
 const SearchBar = ({ searchChannels, channels }) => {
   const classes = useStyles();
@@ -21,12 +25,12 @@ const SearchBar = ({ searchChannels, channels }) => {
     searchChannels(text.current.value);
   };
   return (
-    <div className={classes.search}>
+    <div className={classes.root}>
       <Autocomplete
         options={channels}
         getOptionLabel={(option) => option.name}
         renderOption={(options) => (
-          <List>
+          <List style={{ width: "100%" }}>
             <ChannelSearchItem key={options.display_name} channel={options} />
           </List>
         )}
@@ -38,6 +42,7 @@ const SearchBar = ({ searchChannels, channels }) => {
             variant="outlined"
             onChange={onChange}
             inputRef={text}
+            className={classes.search}
           />
         )}
       />
