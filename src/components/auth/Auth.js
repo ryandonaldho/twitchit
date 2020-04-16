@@ -5,7 +5,7 @@ import queryString from "query-string";
 import { get_access_token } from "../../actions/authActions";
 
 // use this components to store token in localstorage or state from oauth twitch redirect url
-const Auth = props => {
+const Auth = (props) => {
   useEffect(() => {
     const values = queryString.parse(props.location.search);
     props.get_access_token(values.code);

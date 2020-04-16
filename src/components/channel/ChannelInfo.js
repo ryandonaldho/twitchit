@@ -6,24 +6,24 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { connect } from "react-redux";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     "& > *": {
-      margin: theme.spacing(1)
-    }
+      margin: theme.spacing(1),
+    },
   },
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
-    margin: "0 auto"
+    margin: "0 auto",
   },
   box: {
-    width: "100%"
+    width: "100%",
   },
   numbers: {
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 }));
 
 const ChannelInfo = ({ image, followers, views }) => {
@@ -43,7 +43,7 @@ const ChannelInfo = ({ image, followers, views }) => {
         </Grid>
         <Grid item md={4}>
           {" "}
-          <Avatar alt="Remy Sharp" src={image} className={classes.large} />
+          <Avatar alt="avatar" src={image} className={classes.large} />
         </Grid>
         <Grid className={classes.numbers} item md={4}>
           {" "}
@@ -54,10 +54,10 @@ const ChannelInfo = ({ image, followers, views }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   image: state.channel.currentChannelInfo.profile_image_url,
   followers: state.channel.currentChannelTotalFollowers,
-  views: state.channel.currentChannelInfo.view_count
+  views: state.channel.currentChannelInfo.view_count,
 });
 
 export default connect(mapStateToProps, null)(ChannelInfo);
