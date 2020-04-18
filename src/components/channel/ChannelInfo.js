@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     width: "100%",
+    backgroundColor: "yellow",
+    top: "0",
+    position: "sticky",
   },
   numbers: {
     textAlign: "center",
