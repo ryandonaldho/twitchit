@@ -28,6 +28,7 @@ const SearchBar = ({ searchChannels, channels }) => {
     <div className={classes.root}>
       <Autocomplete
         options={channels}
+        size="small"
         getOptionLabel={(option) => option.name}
         renderOption={(options) => (
           <List style={{ width: "100%" }}>

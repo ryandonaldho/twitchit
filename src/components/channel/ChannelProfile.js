@@ -23,19 +23,22 @@ const useStyles = makeStyles(() => ({
     height: "100%",
   },
   chatDiv: {
-    background: "red",
     right: "0",
     width: "25%",
-    height: "100%",
+    height: "90%",
     position: "fixed",
     bottom: "0",
     overflow: "hidden",
   },
   mainDiv: {
-    background: "yellow",
-    height: "100%",
-    overflow: "scroll",
+    height: "90vh",
+    overflowY: "scroll",
+    overflowX: "hidden",
     width: "75%",
+  },
+  grid: {
+    width: "100%",
+    margin: "0",
   },
 }));
 
@@ -69,9 +72,9 @@ const ChannelProfile = (props) => {
         <TwitchChat channel={channel} />{" "}
       </div>
       <div className={classes.mainDiv}>
-        div 1
         <Grid
           container
+          className={classes.grid}
           spacing={3}
           direction="row"
           justify="center"

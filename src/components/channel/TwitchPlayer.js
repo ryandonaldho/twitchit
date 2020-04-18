@@ -22,8 +22,8 @@ const TwitchPlayer = (props) => {
 };
 
 TwitchPlayer.defaultProps = {
-  width: "800",
-  height: "700",
+  width: "100%",
+  height: "100%",
   layout: "video",
 };
 

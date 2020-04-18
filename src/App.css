@@ -12,3 +12,21 @@ iframe {
   max-width: 100% !important;
   width: 100% !important;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6441a5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7e5bbe;
+}
+
+#twitch-embed {
+  height: 90vh;
+}
