@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  getChannelInfo,
-  getChannelFollowing,
-  getTotalFollowers,
-} from "../../actions/channelActions";
+import { getCombinedData } from "../../actions/channelActions";
 import TwitchPlayer from "./TwitchPlayer";
 import TwitchChat from "./TwitchChat";
 import ChannelInfo from "./ChannelInfo";
@@ -42,6 +38,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+// TODO in useEffect teardown clear state to avoid showing briefly previous state
 const ChannelProfile = (props) => {
   const classes = useStyles();
 
@@ -58,9 +55,7 @@ const ChannelProfile = (props) => {
   };
 
   useEffect(() => {
-    props.getChannelInfo(channel);
-    props.getChannelFollowing(props.channelId);
-    props.getTotalFollowers(props.channelId);
+    props.getCombinedData(channel);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "scroll";
@@ -226,7 +221,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getChannelInfo,
-  getChannelFollowing,
-  getTotalFollowers,
+  getCombinedData,
 })(ChannelProfile);

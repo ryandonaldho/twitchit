@@ -86,7 +86,7 @@ export const getTotalFollowers = (channelId) => async (dispatch) => {
       `https://api.twitch.tv/helix/users/follows?to_id=${channelId}`,
       twitch_api_config
     );
-    console.log(res);
+    // console.log(res);
     dispatch({
       type: SET_CHANNEL_FOLLOWERS_COUNT,
       payload: res.data.total,
@@ -107,3 +107,14 @@ export const setCurrentChannelId = (channelId) => async (dispatch) => {
     console.error(err);
   }
 };
+
+export function getCombinedData(channel) {
+  return (dispatch, getState) => {
+    console.log(getState());
+    return dispatch(getChannelInfo(channel)).then(() => {
+      const channelId = getState().channel.currentChannelInfo.id;
+      dispatch(getTotalFollowers(channelId));
+      dispatch(getChannelFollowing(channelId));
+    });
+  };
+}
