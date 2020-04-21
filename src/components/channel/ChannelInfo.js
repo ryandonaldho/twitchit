@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
     margin: "0 auto",
   },
   box: {
@@ -46,7 +46,7 @@ const ChannelInfo = ({ image, followers, views }) => {
         </Grid>
         <Grid item md={4}>
           {" "}
-          <Avatar alt="avatar" src={image} className={classes.large} />
+          <Avatar alt="avatar" src={image} className={classes.small} />
         </Grid>
         <Grid className={classes.numbers} item md={4}>
           {" "}

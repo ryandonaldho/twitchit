@@ -36,6 +36,7 @@ export const getChannelInfo = (channel) => async (dispatch) => {
         },
       }
     );
+    getChannelFollowing(res.data.data[0].id);
     dispatch({
       type: SET_CHANNEL_INFO,
       payload: res.data.data[0],
@@ -51,6 +52,7 @@ export const getChannelFollowing = (channelId) => async (dispatch) => {
     let cursor = "";
     let res;
     let results = [];
+    console.log("hello");
     // gets all users the the channel is following and put into a array
     do {
       if (cursor == "") {

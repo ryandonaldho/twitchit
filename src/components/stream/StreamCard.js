@@ -45,8 +45,7 @@ const StreamCard = ({
   const onClick = (e) => {
     console.log("clicked");
     history.push(`/channel/${user_name}`);
-    // TODO need to remove needing channel id in profile
-    //setCurrentChannelId(user_id);
+    // setCurrentChannelId(user_id);
   };
 
   return (
