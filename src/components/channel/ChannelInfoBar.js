@@ -20,16 +20,14 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     width: "100%",
-    backgroundColor: "yellow",
-    top: "0",
-    position: "sticky",
+    backgroundColor: "green",
   },
   numbers: {
     textAlign: "center",
   },
 }));
 
-const ChannelInfo = ({ image, followers, views }) => {
+const ChannelInfoBar = ({ image, followers, views }) => {
   const classes = useStyles();
   return (
     <div className={classes.box}>
@@ -63,4 +61,4 @@ const mapStateToProps = (state) => ({
   views: state.channel.currentChannelInfo.view_count,
 });
 
-export default connect(mapStateToProps, null)(ChannelInfo);
+export default connect(mapStateToProps, null)(ChannelInfoBar);
