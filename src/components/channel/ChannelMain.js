@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TwitchPlayer from "./TwitchPlayer";
 import ChannelInfoBar from "./ChannelInfoBar";
+import ChannelFollowing from "./ChannelFollowing";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -23,7 +24,7 @@ function TabPanel(props) {
       aria-labelledby={`nav-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </Typography>
   );
 }
@@ -58,19 +59,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  box: {
+    padding: "0px",
+  },
 }));
 
 const ChannelMain = ({ channel }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [player, openPlayer] = useState(true);
-  const [playerBtnText, setplayerBtnText] = useState("Close");
-  const togglePlayer = () => {
-    openPlayer(!player);
-    playerBtnText === "Open"
-      ? setplayerBtnText("Close")
-      : setplayerBtnText("Open");
-  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,15 +88,15 @@ const ChannelMain = ({ channel }) => {
             <LinkTab label="Home" {...a11yProps(0)} />
             <LinkTab label="Videos" {...a11yProps(1)} />
             <LinkTab label="Clips" {...a11yProps(2)} />
-            <LinkTab label="Followers" {...a11yProps(3)} />
+            <LinkTab label="Following" {...a11yProps(3)} />
           </Tabs>
         </Toolbar>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Grid
           container
-          className={classes.grid}
-          spacing={3}
+          spacing={0}
+          className={classes.tabPanel}
           direction="row"
           justify="center"
           alignItems="center"
@@ -108,38 +104,21 @@ const ChannelMain = ({ channel }) => {
           {/* {props.channelInfo && <ChannelHeaderBar />} */}
 
           <Grid item xs={12}>
-            <button onClick={togglePlayer}>{playerBtnText} Stream</button>
-            {player && <TwitchPlayer channel={channel} />}
+            <TwitchPlayer channel={channel} />
           </Grid>
           <Grid item xs={12}>
             <ChannelInfoBar />
           </Grid>
-          <Grid item xs={6}>
-            Test 2
-          </Grid>
-          <Grid item xs={6}>
-            Test 3
-          </Grid>
-          <Grid item xs={6}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            rerum, eligendi asperiores est accusantium commodi molestiae
-            voluptates voluptatem, dolor eaque delectus illum hic optio quidem
-            natus alias, suscipit facilis neque deserunt! Deserunt quibusdam
-            numquam eos recusandae adipisci laudantium perferendis accusamus
-            inventore animi ipsa veniam itaque, provident amet similique
-            incidunt placeat rerum assumenda ullam natus odit! Facilis assumenda
-            consequuntur, sint esse dignissimos ipsum necessitatibus ratione
-          </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel className={classes.tabPanel} value={value} index={1}>
         Page Twouij
       </TabPanel>
       <TabPanel value={value} index={2}>
         Page Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Page Three
+        <ChannelFollowing />
       </TabPanel>
     </div>
   );

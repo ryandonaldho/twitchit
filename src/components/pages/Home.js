@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import TopStreams from "../stream/TopStreams";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
@@ -15,7 +15,7 @@ const Home = (props) => {
   console.log(props.location.state);
 
   return (
-    <div>
+    <Fragment>
       {props.location.state === false && (
         <Alert severity="error">
           Please login, you are currently not logged in
@@ -25,7 +25,7 @@ const Home = (props) => {
         Top Streams
       </Typography>
       <TopStreams />
-    </div>
+    </Fragment>
   );
 };
 

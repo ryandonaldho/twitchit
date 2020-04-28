@@ -21,21 +21,17 @@ const useStyles = makeStyles(() => ({
   },
   chatDiv: {
     right: "0",
-    width: "25%",
+    width: "20%",
     height: "90%",
     position: "fixed",
     bottom: "0",
     overflow: "hidden",
   },
   mainDiv: {
-    height: "90vh",
     overflowY: "scroll",
     overflowX: "hidden",
-    width: "75%",
-  },
-  grid: {
-    width: "100%",
-    margin: "0",
+    height: "95vh",
+    width: "80%",
   },
 }));
 

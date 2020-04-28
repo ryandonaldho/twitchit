@@ -51,11 +51,7 @@ const StreamCard = ({
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={onClick}>
-        <CardMedia
-          className={classes.media}
-          image={thumbnail_url}
-          title="Contemplative Reptile"
-        />
+        <CardMedia className={classes.media} image={thumbnail_url} />
         <Typography className={classes.live_overlay} variant="caption">
           Live
         </Typography>
