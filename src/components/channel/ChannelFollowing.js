@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,6 +7,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import chunk from "lodash/chunk";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -20,8 +22,36 @@ const useStyles = makeStyles({
 });
 
 const ChannelFollowing = ({ users }) => {
-  console.log(users);
   const classes = useStyles();
+
+  const [followingUsers, setFollowingUsers] = useState([]);
+
+  useEffect(() => {
+    console.log(users);
+    let splittedUsers = chunk(users, 100);
+    console.log(splittedUsers);
+    splittedUsers.forEach((userChunk) => {
+      let idsString = userChunk.map((user) => user.to_id).join("&id=");
+      console.log(idsString);
+      getUsers(idsString).then((res) => {
+        console.log(res.data.data);
+        setFollowingUsers(followingUsers.concat(res.data.data));
+      });
+    });
+  }, [users]);
+
+  const getUsers = async (formattedIds) => {
+    const access_token = localStorage.getItem("access_token");
+    const res = await axios.get(
+      `https://api.twitch.tv/helix/users?id=${formattedIds}`,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+    return res;
+  };
 
   const onClick = (e) => {
     console.log("clicked");
@@ -31,6 +61,8 @@ const ChannelFollowing = ({ users }) => {
     return null;
   }
 
+  console.log(followingUsers);
+
   return (
     <Grid
       container
@@ -39,9 +71,8 @@ const ChannelFollowing = ({ users }) => {
       alignItems="center"
       spacing={4}
     >
-      {users.map((user, index) => (
+      {followingUsers.map((user, index) => (
         <Grid item key={index}>
-          {/* {user.to_name} */}
           <Card className={classes.root}>
             <CardActionArea onClick={onClick}>
               <CardMedia
@@ -55,16 +86,16 @@ const ChannelFollowing = ({ users }) => {
                   color="textSecondary"
                   component="h6"
                 >
-                  {user.to_name}
+                  {user.login}
                 </Typography>
-                <Typography
+                {/* <Typography
                   gutterBottom
                   variant="body2"
                   color="textSecondary"
                   component="p"
                 >
                   {user.followed_at}
-                </Typography>
+                </Typography> */}
               </CardContent>
             </CardActionArea>
           </Card>
