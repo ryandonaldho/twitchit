@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import chunk from "lodash/chunk";
 import axios from "axios";
+import SpaceImage from "./starrysky.jpeg";
 
 const useStyles = makeStyles({
   root: {
@@ -21,22 +22,30 @@ const useStyles = makeStyles({
   },
 });
 
+const empty_offline_image_url = SpaceImage;
+
 const ChannelFollowing = ({ users }) => {
   const classes = useStyles();
 
-  const [followingUsers, setFollowingUsers] = useState([]);
+  let [followingUsers, setFollowingUsers] = useState([]);
 
-  useEffect(() => {
+  const getFollowingUsers = async () => {
     console.log(users);
     let splittedUsers = chunk(users, 100);
-    console.log(splittedUsers);
-    splittedUsers.forEach((userChunk) => {
+    // console.log(splittedUsers);
+    let allUsers = [];
+    for (const userChunk of splittedUsers) {
       let idsString = userChunk.map((user) => user.to_id).join("&id=");
-      console.log(idsString);
-      getUsers(idsString).then((res) => {
-        console.log(res.data.data);
-        setFollowingUsers(followingUsers.concat(res.data.data));
-      });
+      const tempUsers = await getUsers(idsString);
+      allUsers = allUsers.concat(tempUsers.data.data);
+    }
+    return allUsers;
+  };
+
+  useEffect(() => {
+    getFollowingUsers().then((users) => {
+      //console.log(users);
+      setFollowingUsers(users);
     });
   }, [users]);
 
@@ -77,7 +86,11 @@ const ChannelFollowing = ({ users }) => {
             <CardActionArea onClick={onClick}>
               <CardMedia
                 className={classes.media}
-                image="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
+                image={
+                  user.offline_image_url
+                    ? user.offline_image_url
+                    : empty_offline_image_url
+                }
               />
               <CardContent>
                 <Typography
