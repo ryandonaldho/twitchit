@@ -1,32 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import chunk from "lodash/chunk";
 import axios from "axios";
-import SpaceImage from "./starrysky.jpeg";
+import UserFollowingCard from "./UserFollowingCard";
 
-const useStyles = makeStyles({
-  root: {
-    width: 308,
-    height: 266,
-    position: "relative",
-  },
-  media: {
-    height: 198,
-  },
-});
-
-const empty_offline_image_url = SpaceImage;
-
-const ChannelFollowing = ({ users }) => {
-  const classes = useStyles();
-
+const ChannelFollowing = ({ users, history }) => {
   let [followingUsers, setFollowingUsers] = useState([]);
 
   const getFollowingUsers = async () => {
@@ -62,10 +41,6 @@ const ChannelFollowing = ({ users }) => {
     return res;
   };
 
-  const onClick = (e) => {
-    console.log("clicked");
-  };
-
   if (!users) {
     return null;
   }
@@ -82,36 +57,7 @@ const ChannelFollowing = ({ users }) => {
     >
       {followingUsers.map((user, index) => (
         <Grid item key={index}>
-          <Card className={classes.root}>
-            <CardActionArea onClick={onClick}>
-              <CardMedia
-                className={classes.media}
-                image={
-                  user.offline_image_url
-                    ? user.offline_image_url
-                    : empty_offline_image_url
-                }
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="body2"
-                  color="textSecondary"
-                  component="h6"
-                >
-                  {user.login}
-                </Typography>
-                {/* <Typography
-                  gutterBottom
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
-                  {user.followed_at}
-                </Typography> */}
-              </CardContent>
-            </CardActionArea>
-          </Card>
+          <UserFollowingCard user={user} />
         </Grid>
       ))}
     </Grid>

@@ -42,11 +42,12 @@ const ChannelProfile = (props) => {
   const channel = props.match.params.channelname;
   useEffect(() => {
     props.getCombinedData(channel);
+    console.error("called", channel);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "scroll";
     };
-  }, [props.channelId]);
+  }, [channel]);
   return (
     <div className={classes.main}>
       <div className={classes.chatDiv}>
