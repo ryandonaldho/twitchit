@@ -3,9 +3,17 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import ClipCard from "./ClipCard";
+import ClipPlayer from "./ClipPlayer";
 
 const ChannelClips = ({ channelId }) => {
   let [clips, setClips] = useState([]);
+  let [clipPlayer, openClipPlayer] = useState(false);
+  let [clipUrl, setClipUrl] = useState("");
+
+  const handleOpenClip = (clipUrl) => {
+    setClipUrl(clipUrl);
+    openClipPlayer(true);
+  };
 
   const getClips = async (broadcaster_id) => {
     const access_token = localStorage.getItem("access_token");
@@ -29,6 +37,7 @@ const ChannelClips = ({ channelId }) => {
 
   return (
     <div>
+      {clipPlayer && <ClipPlayer clipUrl={clipUrl} />}
       Top Clips
       <Grid
         container
@@ -39,7 +48,7 @@ const ChannelClips = ({ channelId }) => {
       >
         {clips.map((clip, index) => (
           <Grid item key={index}>
-            <ClipCard clip={clip} />
+            <ClipCard clip={clip} handleOpenClip={handleOpenClip} />
           </Grid>
         ))}
       </Grid>

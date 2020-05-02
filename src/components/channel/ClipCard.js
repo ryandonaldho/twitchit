@@ -20,15 +20,16 @@ const useStyles = makeStyles({
   },
 });
 
-const ClipCard = ({ clip, history }) => {
+const ClipCard = ({ clip, handleOpenClip }) => {
   const classes = useStyles();
-  const onClick = (e) => {
-    // setCurrentChannelId(user_id);
+
+  const handleClick = () => {
+    handleOpenClip(clip.url);
   };
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea onClick={handleClick}>
         <CardMedia className={classes.media} image={clip.thumbnail_url} />
         <CardContent>{clip.broadcaster_name}</CardContent>
       </CardActionArea>
