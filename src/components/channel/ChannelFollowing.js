@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import chunk from "lodash/chunk";
 import axios from "axios";
 import UserFollowingCard from "./UserFollowingCard";
+import { twitch_helix_api_config } from "../../utils";
 
 const ChannelFollowing = ({ users, history }) => {
   let [followingUsers, setFollowingUsers] = useState([]);
@@ -29,14 +30,9 @@ const ChannelFollowing = ({ users, history }) => {
   }, [users]);
 
   const getUsers = async (formattedIds) => {
-    const access_token = localStorage.getItem("access_token");
     const res = await axios.get(
       `https://api.twitch.tv/helix/users?id=${formattedIds}`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
+      twitch_helix_api_config
     );
     return res;
   };

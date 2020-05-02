@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useEffect } from "react";
 import StreamCard from "./StreamCard";
-import { twitch_api_config } from "../../utils";
+import { twitch_helix_api_config } from "../../utils";
 
 const TopStreams = () => {
   const [items, setItems] = useState([]);
@@ -30,7 +30,7 @@ const TopStreams = () => {
   const getGames = async (queryString) => {
     let res = await axios.get(
       `https://api.twitch.tv/helix/games?id=${queryString}`,
-      twitch_api_config
+      twitch_helix_api_config
     );
     //console.log(res);
     return res;
@@ -58,12 +58,12 @@ const TopStreams = () => {
     if (nextCursor === "") {
       res = await axios.get(
         `https://api.twitch.tv/helix/streams?first=30`,
-        twitch_api_config
+        twitch_helix_api_config
       );
     } else {
       res = await axios.get(
         `https://api.twitch.tv/helix/streams?first=20&after=${nextCursor}`,
-        twitch_api_config
+        twitch_helix_api_config
       );
     }
     setThumbnailSize(res.data.data, "440", "248");

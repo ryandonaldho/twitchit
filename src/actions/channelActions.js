@@ -7,6 +7,7 @@ import {
 } from "./types";
 import axios from "axios";
 import { twitch_api_config } from "../utils";
+import { twitch_helix_api_config } from "../utils";
 
 export const searchChannels = (channel) => async (dispatch) => {
   try {
@@ -30,11 +31,7 @@ export const getChannelInfo = (channel) => async (dispatch) => {
     const access_token = localStorage.getItem("access_token");
     const res = await axios.get(
       `https://api.twitch.tv/helix/users?login=${channel}`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
+      twitch_helix_api_config
     );
     getChannelFollowing(res.data.data[0].id);
     dispatch({
@@ -58,12 +55,12 @@ export const getChannelFollowing = (channelId) => async (dispatch) => {
       if (cursor == "") {
         res = await axios.get(
           `https://api.twitch.tv/helix/users/follows?from_id=${channelId}&first=100`,
-          twitch_api_config
+          twitch_helix_api_config
         );
       } else {
         res = await axios.get(
           `https://api.twitch.tv/helix/users/follows?from_id=${channelId}&first=100&after=${cursor}`,
-          twitch_api_config
+          twitch_helix_api_config
         );
       }
       results = results.concat(res.data.data);
@@ -84,7 +81,7 @@ export const getTotalFollowers = (channelId) => async (dispatch) => {
   try {
     let res = await axios.get(
       `https://api.twitch.tv/helix/users/follows?to_id=${channelId}`,
-      twitch_api_config
+      twitch_helix_api_config
     );
     // console.log(res);
     dispatch({
