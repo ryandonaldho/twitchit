@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import TwitchPlayer from "./TwitchPlayer";
 import ChannelInfoBar from "./ChannelInfoBar";
 import ChannelFollowing from "./ChannelFollowing";
+import ChannelClips from "./ChannelClips";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -112,10 +113,10 @@ const ChannelMain = ({ channel }) => {
         </Grid>
       </TabPanel>
       <TabPanel className={classes.tabPanel} value={value} index={1}>
-        Page Twouij
+        Videos
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Page Three
+        <ChannelClips />
       </TabPanel>
       <TabPanel value={value} index={3}>
         <ChannelFollowing />

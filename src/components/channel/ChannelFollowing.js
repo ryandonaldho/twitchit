@@ -45,8 +45,6 @@ const ChannelFollowing = ({ users, history }) => {
     return null;
   }
 
-  console.log(followingUsers);
-
   return (
     <Grid
       container

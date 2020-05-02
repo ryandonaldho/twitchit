@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import SpaceImage from "./starrysky.jpeg";
+import Avatar from "@material-ui/core/Avatar";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -38,8 +39,17 @@ const UserFollowingCard = ({ user, history }) => {
               : empty_offline_image_url
           }
         />
-        <CardContent>
+        <div
+          style={{
+            textAlign: "center",
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+          }}
+        >
+          <Avatar alt="Remy Sharp" src={user.profile_image_url} />
           <Typography
+            style={{ color: "white" }}
             gutterBottom
             variant="body2"
             color="textSecondary"
@@ -55,7 +65,7 @@ const UserFollowingCard = ({ user, history }) => {
         >
           {user.followed_at}
         </Typography> */}
-        </CardContent>
+        </div>
       </CardActionArea>
     </Card>
   );
