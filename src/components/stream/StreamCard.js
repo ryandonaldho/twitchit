@@ -59,12 +59,7 @@ const StreamCard = ({
           {numeral(viewer_count).format("0.0a")} viewers
         </Typography>
         <CardContent>
-          <Typography
-            gutterBottom
-            variant="body2"
-            color="textSecondary"
-            component="h6"
-          >
+          <Typography gutterBottom noWrap variant="subtitle1" component="h6">
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

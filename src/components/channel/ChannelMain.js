@@ -12,6 +12,7 @@ import TwitchPlayer from "./TwitchPlayer";
 import ChannelInfoBar from "./ChannelInfoBar";
 import ChannelFollowing from "./ChannelFollowing";
 import ChannelClips from "./ChannelClips";
+import ChannelVideos from "./ChannelVideos";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -113,7 +114,7 @@ const ChannelMain = ({ channel }) => {
         </Grid>
       </TabPanel>
       <TabPanel className={classes.tabPanel} value={value} index={1}>
-        Videos
+        <ChannelVideos />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <ChannelClips />
