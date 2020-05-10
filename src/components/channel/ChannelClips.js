@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
@@ -10,9 +10,15 @@ const ChannelClips = ({ channelId }) => {
   let [clipPlayer, openClipPlayer] = useState(false);
   let [clipUrl, setClipUrl] = useState("");
 
+  let playerRef = useRef(null);
+
   const handleOpenClip = (clipUrl) => {
     setClipUrl(clipUrl);
     openClipPlayer(true);
+    setTimeout(() => {
+      console.log(playerRef);
+      playerRef.current.scrollIntoView();
+    }, 500);
   };
 
   const getClips = async (broadcaster_id) => {
@@ -35,8 +41,11 @@ const ChannelClips = ({ channelId }) => {
     });
   }, [channelId]);
 
+  console.log(playerRef);
+
   return (
     <div>
+      <div ref={playerRef}></div>
       {clipPlayer && <ClipPlayer clipUrl={clipUrl} />}
       Top Clips
       <Grid
@@ -51,6 +60,12 @@ const ChannelClips = ({ channelId }) => {
             <ClipCard clip={clip} handleOpenClip={handleOpenClip} />
           </Grid>
         ))}
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
       </Grid>
     </div>
   );

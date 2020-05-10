@@ -44,7 +44,7 @@ const ChannelVideos = ({ channelId }) => {
 
   const getAllVideos = async (userId) => {
     const res = await axios.get(
-      `https://api.twitch.tv/helix/videos?user_id=${userId}&type=archive&first=20`,
+      `https://api.twitch.tv/helix/videos?user_id=${userId}&type=archive&first=100`,
       twitch_helix_api_config
     );
     //console.log(res);
@@ -78,8 +78,8 @@ const ChannelVideos = ({ channelId }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 4, // optional, default to 1.
+      items: 5,
+      slidesToSlide: 5, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },

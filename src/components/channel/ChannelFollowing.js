@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import chunk from "lodash/chunk";
 import axios from "axios";
 import UserFollowingCard from "./UserFollowingCard";
 import { twitch_helix_api_config } from "../../utils";
 
+const useStyles = makeStyles({
+  flex: {
+    display: "flex",
+    justifyContent: "center",
+  },
+});
+
 const ChannelFollowing = ({ users, history }) => {
+  const classes = useStyles();
+
   let [followingUsers, setFollowingUsers] = useState([]);
 
   const getFollowingUsers = async () => {
@@ -42,18 +52,18 @@ const ChannelFollowing = ({ users, history }) => {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={4}
-    >
+    <Grid container className={classes.flex} spacing={4}>
       {followingUsers.map((user, index) => (
         <Grid item key={index}>
           <UserFollowingCard user={user} />
         </Grid>
       ))}
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
     </Grid>
   );
 };
