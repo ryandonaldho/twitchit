@@ -18,10 +18,13 @@ const useStyles = makeStyles({
   },
 });
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, handleOpenVideo }) => {
   const classes = useStyles();
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    console.log(video.id);
+    handleOpenVideo(video.id);
+  };
 
   return (
     <Card className={classes.root}>

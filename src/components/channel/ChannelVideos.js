@@ -5,12 +5,21 @@ import { connect } from "react-redux";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import VideoCard from "./VideoCard";
+import VideoPlayer from "./VideosPlayer";
 
 const ChannelVideos = ({ channelId }) => {
   const [recentVods, setRecentVods] = useState([]);
   const [highlights, setHighlights] = useState([]);
   const [popularVideos, setPopularVideos] = useState([]);
   const [allVideos, setAllVideos] = useState([]);
+
+  let [videoPlayer, openVideoPlayer] = useState(false);
+  let [videoId, setVideoId] = useState("");
+
+  const handleOpenVideo = (videoId) => {
+    setVideoId(videoId);
+    openVideoPlayer(true);
+  };
 
   const getRecentVods = async (userId) => {
     const res = await axios.get(
@@ -96,6 +105,7 @@ const ChannelVideos = ({ channelId }) => {
   return (
     <div>
       <h1>Videos</h1>
+      {videoPlayer && <VideoPlayer videoId={videoId} />}
       <div>
         Recent Broadcast
         <Carousel
@@ -113,7 +123,7 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {recentVods.map((vod) => (
-            <VideoCard video={vod} />
+            <VideoCard video={vod} handleOpenVideo={handleOpenVideo} />
           ))}
         </Carousel>
       </div>
@@ -134,7 +144,7 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {highlights.map((highlight) => (
-            <VideoCard video={highlight} />
+            <VideoCard video={highlight} handleOpenVideo={handleOpenVideo} />
           ))}
         </Carousel>
       </div>
@@ -155,7 +165,7 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {popularVideos.map((video) => (
-            <VideoCard video={video} />
+            <VideoCard video={video} handleOpenVideo={handleOpenVideo} />
           ))}
         </Carousel>
       </div>
@@ -176,7 +186,7 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {allVideos.map((video) => (
-            <VideoCard video={video} />
+            <VideoCard video={video} handleOpenVideo={handleOpenVideo} />
           ))}
         </Carousel>
       </div>

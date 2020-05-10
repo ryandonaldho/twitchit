@@ -25,7 +25,6 @@ const ClipCard = ({ clip, handleOpenClip }) => {
 
   const handleClick = () => {
     handleOpenClip(clip.url);
-    window.scrollTo(0, 0);
   };
 
   return (
