@@ -9,8 +9,7 @@ const PrivateRoute = ({ children, isAuthenticated }) => (
     ) : (
       <Redirect
         to={{
-          pathname: "",
-          state: isAuthenticated,
+          pathname: "/",
         }}
       />
     )}

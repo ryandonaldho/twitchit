@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { twitch_helix_api_config } from "../../utils";
+import { set_twitch_helix_api_config } from "../../utils";
 import axios from "axios";
 import { connect } from "react-redux";
 import Carousel from "react-multi-carousel";
@@ -24,7 +24,7 @@ const ChannelVideos = ({ channelId }) => {
   const getRecentVods = async (userId) => {
     const res = await axios.get(
       `https://api.twitch.tv/helix/videos?user_id=${userId}&type=archive&first=20&period=week`,
-      twitch_helix_api_config
+      set_twitch_helix_api_config()
     );
     //console.log(res);
     setThumbnailSize(res.data.data, "308", "198");
@@ -34,7 +34,7 @@ const ChannelVideos = ({ channelId }) => {
   const getHighlights = async (userId) => {
     const res = await axios.get(
       `https://api.twitch.tv/helix/videos?user_id=${userId}&type=highlight&first=20`,
-      twitch_helix_api_config
+      set_twitch_helix_api_config()
     );
     //console.log(res);
     setThumbnailSize(res.data.data, "308", "198");
@@ -44,7 +44,7 @@ const ChannelVideos = ({ channelId }) => {
   const getPopularVideos = async (userId) => {
     const res = await axios.get(
       `https://api.twitch.tv/helix/videos?user_id=${userId}&sort=trending&first=20`,
-      twitch_helix_api_config
+      set_twitch_helix_api_config()
     );
     //console.log(res);
     setThumbnailSize(res.data.data, "308", "198");
@@ -54,7 +54,7 @@ const ChannelVideos = ({ channelId }) => {
   const getAllVideos = async (userId) => {
     const res = await axios.get(
       `https://api.twitch.tv/helix/videos?user_id=${userId}&type=archive&first=100`,
-      twitch_helix_api_config
+      set_twitch_helix_api_config()
     );
     //console.log(res);
     setThumbnailSize(res.data.data, "308", "198");

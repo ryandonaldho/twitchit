@@ -33,6 +33,7 @@ const NavBar = ({ isAuthenticated, revoke_access }) => {
   const logout = () => {
     const access_token = localStorage.getItem("access_token");
     revoke_access(access_token);
+    localStorage.clear();
   };
 
   console.log(isAuthenticated);

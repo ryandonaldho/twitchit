@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import ClipCard from "./ClipCard";
 import ClipPlayer from "./ClipPlayer";
+import { set_twitch_helix_api_config } from "../../utils";
 
 const ChannelClips = ({ channelId }) => {
   let [clips, setClips] = useState([]);
@@ -25,11 +26,7 @@ const ChannelClips = ({ channelId }) => {
     const access_token = localStorage.getItem("access_token");
     const res = await axios.get(
       `https://api.twitch.tv/helix/clips?broadcaster_id=${broadcaster_id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
+      set_twitch_helix_api_config()
     );
     return res.data.data;
   };

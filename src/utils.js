@@ -7,11 +7,14 @@ export const twitch_api_config = {
 };
 
 // for helix endpoints
-const access_token = localStorage.getItem("access_token");
-export const twitch_helix_api_config = {
-  headers: {
-    "Client-ID": twitchClientId,
-    Authorization: `Bearer ${access_token}`,
-    accept: "application/vnd.twitchtv.v5+json",
-  },
+export const set_twitch_helix_api_config = () => {
+  const access_token = localStorage.getItem("access_token");
+  let headerObj = {
+    headers: {
+      "Client-ID": twitchClientId,
+      Authorization: `Bearer ${access_token}`,
+      accept: "application/vnd.twitchtv.v5+json",
+    },
+  };
+  return headerObj;
 };

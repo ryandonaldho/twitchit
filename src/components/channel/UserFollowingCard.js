@@ -28,16 +28,23 @@ const UserFollowingCard = ({ user, history }) => {
     // setCurrentChannelId(user_id);
   };
 
+  const handleOffilineImage = (image) => {
+    if (image === "") {
+      return empty_offline_image_url;
+    } else {
+      // use a smaller image
+      image = image.replace("1920", "308");
+      image = image.replace("1080", "198");
+      return image;
+    }
+  };
+
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={onClick}>
         <CardMedia
           className={classes.media}
-          image={
-            user.offline_image_url
-              ? user.offline_image_url
-              : empty_offline_image_url
-          }
+          image={handleOffilineImage(user.offline_image_url)}
         />
         <div
           style={{
@@ -47,7 +54,7 @@ const UserFollowingCard = ({ user, history }) => {
             position: "absolute",
           }}
         >
-          <Avatar alt="Remy Sharp" src={user.profile_image_url} />
+          <Avatar src={user.profile_image_url} />
           <Typography
             style={{ color: "white" }}
             gutterBottom

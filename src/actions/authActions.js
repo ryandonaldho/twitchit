@@ -14,13 +14,13 @@ export const get_access_token = (authorization_code) => async (dispatch) => {
     const res = await axios.post(
       `https://id.twitch.tv/oauth2/token?client_id=${twitchClientId}&client_secret=${twitchClientSecret}&grant_type=authorization_code&code=${authorization_code}&redirect_uri=${twitchRedirectUri}`
     );
+    console.log(res.data);
+    // set token to local storage
+    localStorage.setItem("access_token", res.data.access_token);
     dispatch({
       type: SET_AUTHENTICATION,
       payload: true,
     });
-    console.log(res.data);
-    // set token to local storage
-    localStorage.setItem("access_token", res.data.access_token);
   } catch (err) {
     console.log(err);
   }
