@@ -56,7 +56,7 @@ const NavBar = ({ isAuthenticated, revoke_access }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.searchBar}>
-              <SearchBar />
+              {isAuthenticated ? <SearchBar /> : null}
             </Grid>
             <Grid item xs className={classes.auth}>
               {isAuthenticated ? (
