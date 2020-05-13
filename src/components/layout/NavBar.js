@@ -27,16 +27,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let twitchOauthURL;
+
+if (process.env.NODE_ENV != "production") {
+  twitchOauthURL = process.env.REACT_APP_TWITCH_OAUTH_URL;
+} else {
+  twitchOauthURL = process.env.REACT_APP_TWITCH_OAUTH_URL;
+}
+
 const NavBar = ({ isAuthenticated, revoke_access }) => {
   const classes = useStyles();
-
+  console.log(twitchOauthURL);
   const logout = () => {
     const access_token = localStorage.getItem("access_token");
     revoke_access(access_token);
     localStorage.clear();
   };
 
-  console.log(isAuthenticated);
+  //console.log(isAuthenticated);
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
@@ -67,7 +75,7 @@ const NavBar = ({ isAuthenticated, revoke_access }) => {
                 <Button
                   variant="contained"
                   className={classes.authBtn}
-                  href={process.env.REACT_APP_TWITCH_OAUTH_URL}
+                  href={twitchOauthURL}
                 >
                   Login To Twitch
                 </Button>

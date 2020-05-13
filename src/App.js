@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import NavBar from "./components/layout/NavBar";
-import ChannelProfile from "./components/channel/ChannelProfile";
+import ChannelMain from "./components/channel/main/ChannelMain";
 import Auth from "./components/auth/Auth";
 import NotFound from "./components/pages/NotFound";
 
@@ -33,7 +33,7 @@ function App() {
               <Route
                 exact
                 path="/channel/:channelname"
-                component={ChannelProfile}
+                component={ChannelMain}
               ></Route>
             </PrivateRoute>
             <Route component={NotFound}></Route>

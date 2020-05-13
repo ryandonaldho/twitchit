@@ -1,12 +1,21 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  videoPlayer: {
+    height: "85vh",
+  },
+});
 
 const VideosPlayer = ({ videoId }) => {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.videoPlayer}>
       <iframe
         src={`https://player.twitch.tv/?video=${videoId}&autoplay=true`}
-        height="720"
-        width="6400"
+        height="100%"
+        width="100%"
         frameborder="0"
         scrolling="no"
         allowfullscreen="true"

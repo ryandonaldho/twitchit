@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { setCurrentChannelId } from "../../actions/channelActions";
 
 const ChannelSearchItem = ({ channel, history, setCurrentChannelId }) => {
-  const onClick = e => {
+  const onClick = (e) => {
     //console.log(channel.name);
     history.push(`/channel/${channel.name}`);
     setCurrentChannelId(channel._id);

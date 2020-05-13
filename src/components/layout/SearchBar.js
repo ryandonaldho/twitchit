@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import ChannelSearchItem from "../channel/ChannelSearchItem";
+import ChannelSearchItem from "./ChannelSearchItem";
 import { searchChannels } from "../../actions/channelActions";
 import { List } from "@material-ui/core";
 

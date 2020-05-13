@@ -5,9 +5,15 @@ let twitchClientId;
 let twitchClientSecret;
 let twitchRedirectUri;
 
-twitchClientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
-twitchClientSecret = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
-twitchRedirectUri = process.env.REACT_APP_TWITCH_REDIRECT_URI;
+if (process.env.NODE_ENV != "production") {
+  twitchClientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
+  twitchClientSecret = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
+  twitchRedirectUri = process.env.REACT_APP_TWITCH_REDIRECT_URI;
+} else {
+  twitchClientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
+  twitchClientSecret = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
+  twitchRedirectUri = process.env.REACT_APP_TWITCH_REDIRECT_URI;
+}
 
 export const get_access_token = (authorization_code) => async (dispatch) => {
   try {

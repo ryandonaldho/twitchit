@@ -5,13 +5,18 @@ import Grid from "@material-ui/core/Grid";
 import chunk from "lodash/chunk";
 import axios from "axios";
 import UserFollowingCard from "./UserFollowingCard";
-import { set_twitch_helix_api_config } from "../../utils";
+import { set_twitch_helix_api_config } from "../../../utils";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   flex: {
     display: "flex",
     justifyContent: "center",
+    paddingTop: "2rem",
+  },
+  box: {
+    paddingTop: "2rem",
   },
 });
 
@@ -55,23 +60,31 @@ const ChannelFollowing = ({ users, history }) => {
   }
 
   return (
-    <Grid container className={classes.flex} spacing={4}>
-      {loading && (
-        <Skeleton animation="wave" variant="rect" width={1920} height={1080} />
-      )}
-      {!loading &&
-        followingUsers.map((user, index) => (
-          <Grid item key={index}>
-            <UserFollowingCard user={user} />
-          </Grid>
-        ))}
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-      <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
-    </Grid>
+    <div className={classes.box}>
+      <Typography variant="h4"> Following </Typography>
+      <Grid container className={classes.flex} spacing={4}>
+        {loading && (
+          <Skeleton
+            animation="wave"
+            variant="rect"
+            width={1920}
+            height={1080}
+          />
+        )}
+        {!loading &&
+          followingUsers.map((user, index) => (
+            <Grid item key={index}>
+              <UserFollowingCard user={user} />
+            </Grid>
+          ))}
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+        <i aria-hidden="true" style={{ width: "340px", height: "198px" }}></i>
+      </Grid>
+    </div>
   );
 };
 

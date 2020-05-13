@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { set_twitch_helix_api_config } from "../../utils";
+import { set_twitch_helix_api_config } from "../../../utils";
 import axios from "axios";
 import { connect } from "react-redux";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import VideoCard from "./VideoCard";
 import VideoPlayer from "./VideosPlayer";
+import { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  videoRow: {
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+  },
+});
 
 const ChannelVideos = ({ channelId }) => {
+  const classes = useStyles();
   const [recentVods, setRecentVods] = useState([]);
   const [highlights, setHighlights] = useState([]);
   const [popularVideos, setPopularVideos] = useState([]);
@@ -104,10 +114,10 @@ const ChannelVideos = ({ channelId }) => {
 
   return (
     <div>
-      <h1>Videos</h1>
       {videoPlayer && <VideoPlayer videoId={videoId} />}
-      <div>
-        Recent Broadcast
+      <Typography variant="h4">Videos</Typography>
+      <div className={classes.videoRow}>
+        <Typography variant="h6"> Recent Broadcast</Typography>
         <Carousel
           swipeable={false}
           draggable={false}
@@ -127,8 +137,8 @@ const ChannelVideos = ({ channelId }) => {
           ))}
         </Carousel>
       </div>
-      <div>
-        Recent Highlights
+      <div className={classes.videoRow}>
+        <Typography variant="h6"> Highlights</Typography>
         <Carousel
           swipeable={false}
           draggable={false}
@@ -148,8 +158,8 @@ const ChannelVideos = ({ channelId }) => {
           ))}
         </Carousel>
       </div>
-      <div>
-        Popular Clips
+      <div className={classes.videoRow}>
+        <Typography variant="h6"> Popular Clips </Typography>
         <Carousel
           swipeable={false}
           draggable={false}
@@ -169,8 +179,8 @@ const ChannelVideos = ({ channelId }) => {
           ))}
         </Carousel>
       </div>
-      <div>
-        All videos
+      <div className={classes.videoRow}>
+        <Typography variant="h6"> All Videos</Typography>
         <Carousel
           swipeable={false}
           draggable={false}

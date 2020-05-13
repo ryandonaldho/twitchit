@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import ClipCard from "./ClipCard";
 import ClipPlayer from "./ClipPlayer";
-import { set_twitch_helix_api_config } from "../../utils";
+import { set_twitch_helix_api_config } from "../../../utils";
+import { Typography } from "@material-ui/core";
 
 const ChannelClips = ({ channelId }) => {
   let [clips, setClips] = useState([]);
@@ -44,7 +45,7 @@ const ChannelClips = ({ channelId }) => {
     <div>
       <div ref={playerRef}></div>
       {clipPlayer && <ClipPlayer clipUrl={clipUrl} />}
-      Top Clips
+      <Typography variant="h4"> Top Clips</Typography>
       <Grid
         container
         direction="row"
