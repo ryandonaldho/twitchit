@@ -49,7 +49,6 @@ export const getChannelFollowing = (channelId) => async (dispatch) => {
     let cursor = "";
     let res;
     let results = [];
-    console.log("hello");
     // gets all users the the channel is following and put into a array
     do {
       if (cursor == "") {
@@ -107,7 +106,7 @@ export const setCurrentChannelId = (channelId) => async (dispatch) => {
 
 export function getCombinedData(channel) {
   return (dispatch, getState) => {
-    console.log(getState());
+    //console.log(getState());
     return dispatch(getChannelInfo(channel)).then(() => {
       const channelId = getState().channel.currentChannelInfo.id;
       dispatch(getTotalFollowers(channelId));

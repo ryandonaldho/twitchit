@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 
 import SearchBar from "./SearchBar";
@@ -59,7 +57,7 @@ const NavBar = ({ isAuthenticated, revoke_access }) => {
               <Typography className={classes.title} variant="h6" noWrap>
                 <Link className={classes.link} to="/">
                   {" "}
-                  Twitch It
+                  Alternative Twitch
                 </Link>
               </Typography>
             </Grid>

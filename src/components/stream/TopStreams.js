@@ -70,7 +70,6 @@ const TopStreams = () => {
     return res;
   };
   useEffect(() => {
-    console.log("topstream!");
     getLiveStreams().then((res) => {
       //console.log(res.data.data);
       setItems(res.data.data);

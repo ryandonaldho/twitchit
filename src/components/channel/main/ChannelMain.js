@@ -62,7 +62,6 @@ function LinkTab(props) {
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    marginTop: "20px",
   },
   main: {
     width: "100%",
@@ -79,7 +78,7 @@ const useStyles = makeStyles(() => ({
   mainDiv: {
     overflowY: "scroll",
     overflowX: "hidden",
-    height: "95vh",
+    height: "100vh",
     width: "80%",
   },
   box: {
@@ -114,15 +113,17 @@ const ChannelMain = (props) => {
         <div className={classes.mainDiv}>
           <div className={classes.root}>
             <AppBar position="sticky">
-              <Toolbar>
+              <Toolbar variant="dense">
                 <Typography variant="h6" className={classes.title}>
-                  News
+                  {channel}
                 </Typography>
                 <Tabs
                   variant="fullWidth"
                   value={value}
                   onChange={handleChange}
-                  aria-label="nav tabs example"
+                  aria-label="navtab"
+                  scrollButtons="auto"
+                  centered
                 >
                   <LinkTab label="Home" {...a11yProps(0)} />
                   <LinkTab label="Videos" {...a11yProps(1)} />

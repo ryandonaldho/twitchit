@@ -43,7 +43,6 @@ const StreamCard = ({
 }) => {
   const classes = useStyles();
   const onClick = (e) => {
-    console.log("clicked");
     history.push(`/channel/${user_name}`);
     // setCurrentChannelId(user_id);
   };

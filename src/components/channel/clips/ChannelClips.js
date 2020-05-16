@@ -18,9 +18,12 @@ const ChannelClips = ({ channelId }) => {
     setClipUrl(clipUrl);
     openClipPlayer(true);
     setTimeout(() => {
-      console.log(playerRef);
-      playerRef.current.scrollIntoView();
-    }, 500);
+      console.log(playerRef.current);
+      //playerRef.current.scrollIntoView({ behavior: "smooth" });
+      // var top = playerRef.current.offsetHeight - 10;
+      // console.log(top);
+      // window.scrollTo(0, top);
+    }, 1000);
   };
 
   const getClips = async (broadcaster_id) => {
@@ -43,8 +46,9 @@ const ChannelClips = ({ channelId }) => {
 
   return (
     <div>
-      <div ref={playerRef}></div>
-      {clipPlayer && <ClipPlayer clipUrl={clipUrl} />}
+      <div ref={playerRef}>
+        {clipPlayer && <ClipPlayer clipUrl={clipUrl} />}
+      </div>
       <Typography variant="h4"> Top Clips</Typography>
       <Grid
         container

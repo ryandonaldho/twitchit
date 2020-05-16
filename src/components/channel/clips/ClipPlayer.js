@@ -1,8 +1,10 @@
 import React from "react";
 
+let hostname = window.location.hostname;
+
 const ClipPlayer = ({ clipUrl }) => {
   let clipValue = clipUrl.replace("https://clips.twitch.tv/", "");
-  const src = `https://clips.twitch.tv/embed?clip=${clipValue}`;
+  const src = `https://clips.twitch.tv/embed?clip=${clipValue}&parent=${hostname}`;
   return (
     <div>
       <iframe

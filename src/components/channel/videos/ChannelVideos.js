@@ -80,7 +80,7 @@ const ChannelVideos = ({ channelId }) => {
 
   useEffect(() => {
     getRecentVods(channelId).then((recentVods) => {
-      console.log(recentVods);
+      //console.log(recentVods);
       setRecentVods(recentVods);
     });
     getHighlights(channelId).then((highlights) => {
@@ -133,7 +133,11 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {recentVods.map((vod) => (
-            <VideoCard video={vod} handleOpenVideo={handleOpenVideo} />
+            <VideoCard
+              key={vod.id}
+              video={vod}
+              handleOpenVideo={handleOpenVideo}
+            />
           ))}
         </Carousel>
       </div>
@@ -154,7 +158,11 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {highlights.map((highlight) => (
-            <VideoCard video={highlight} handleOpenVideo={handleOpenVideo} />
+            <VideoCard
+              key={highlight.id}
+              video={highlight}
+              handleOpenVideo={handleOpenVideo}
+            />
           ))}
         </Carousel>
       </div>
@@ -175,7 +183,11 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {popularVideos.map((video) => (
-            <VideoCard video={video} handleOpenVideo={handleOpenVideo} />
+            <VideoCard
+              key={video.id}
+              video={video}
+              handleOpenVideo={handleOpenVideo}
+            />
           ))}
         </Carousel>
       </div>
@@ -196,7 +208,11 @@ const ChannelVideos = ({ channelId }) => {
           itemClass="image-item"
         >
           {allVideos.map((video) => (
-            <VideoCard video={video} handleOpenVideo={handleOpenVideo} />
+            <VideoCard
+              key={video.id}
+              video={video}
+              handleOpenVideo={handleOpenVideo}
+            />
           ))}
         </Carousel>
       </div>
